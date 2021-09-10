@@ -32,10 +32,9 @@ namespace TCPServer
                 TcpClient client = await server.AcceptTcpClientAsync();
                 NetworkStream stream = client.GetStream();
                 byte[] dataReceived = new byte[4];
-                int bytesRead = await stream.ReadAsync(dataReceived, 0,
-                dataReceived.Length);
-                Console.WriteLine(bytesRead);
-                int toSend = Fib(bytesRead);
+                await stream.ReadAsync(dataReceived, 0,dataReceived.Length);
+                Console.WriteLine(dataReceived.ToString());
+                int toSend = Fib(Convert.ToInt32(Encoding.ASCII.GetString(dataReceived)));
                 byte[] dataToSend = Encoding.ASCII.GetBytes(toSend.ToString());
                 await stream.WriteAsync(dataToSend, 0, dataToSend.Length);
                 Console.WriteLine("Sent");

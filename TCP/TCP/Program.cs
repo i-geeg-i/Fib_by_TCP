@@ -17,8 +17,8 @@ namespace TCP
             byte[] dataToSend = Encoding.ASCII.GetBytes(toSend.ToString());
             stream.Write(dataToSend, 0, dataToSend.Length);
             byte[] dataReceived = new byte[4];
-            string bytesRead = stream.Read(dataReceived, 0, dataReceived.Length).ToString();
-            Console.WriteLine(bytesRead);
+            stream.Read(dataReceived, 0, dataReceived.Length).ToString();
+            Console.WriteLine(Encoding.ASCII.GetString(dataReceived));
             stream.Close(0);
             client.Close();
         }
