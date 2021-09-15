@@ -7,7 +7,7 @@ namespace TCP
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static void Task Main(string[] args)
         {
             Console.WriteLine("Hello!");
             int toSend = Convert.ToInt32(Console.ReadLine());
@@ -17,7 +17,7 @@ namespace TCP
             byte[] dataToSend = Encoding.ASCII.GetBytes(toSend.ToString());
             stream.Write(dataToSend, 0, dataToSend.Length);
             byte[] dataReceived = new byte[4];
-            stream.Read(dataReceived, 0, dataReceived.Length).ToString();
+            stream.Read(dataReceived, 0, dataReceived.Length);
             Console.WriteLine(Encoding.ASCII.GetString(dataReceived));
             stream.Close(0);
             client.Close();
